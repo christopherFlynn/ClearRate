@@ -1,0 +1,27 @@
+Variable,Key,Relativity,Description
+Base_Premium,base,800.0,Annual base premium (USD)
+Driver_Age,16-17,2.4,Teen driver surcharge
+Driver_Age,18-20,1.95,Young adult surcharge
+Driver_Age,21-25,1.4,Early adult surcharge
+Driver_Age,26-64,1.0,Standard adult (base)
+Driver_Age,65-74,1.1,Senior mild surcharge
+Driver_Age,75+,1.3,Senior elevated surcharge
+Vehicle_Value,symbol_1,0.75,Vehicle value < $10 000
+Vehicle_Value,symbol_2,0.9,Vehicle value $10 000 – $19 999
+Vehicle_Value,symbol_3,1.0,Vehicle value $20 000 – $34 999 (base)
+Vehicle_Value,symbol_4,1.2,Vehicle value $35 000 – $54 999
+Vehicle_Value,symbol_5,1.45,Vehicle value $55 000 – $79 999
+Vehicle_Value,symbol_6,1.75,Vehicle value ≥ $80 000
+Territory,urban,1.3,High-density urban — elevated theft/collision
+Territory,suburban,1.0,Suburban — base territory
+Territory,rural,0.85,Rural — lower traffic density
+Safety_Features,none,1.0,No advanced safety systems
+Safety_Features,basic,0.95,ABS + airbags only
+Safety_Features,advanced,0.88,"ADAS (lane-keep, auto-brake, blind-spot)"
+Safety_Features,full_adas,0.8,Full ADAS + telematics discount
+Deductible,250,1.2,Deductible $250
+Deductible,500,1.0,Deductible $500 (base)
+Deductible,1000,0.85,Deductible $1 000
+Deductible,2000,0.73,Deductible $2 000
+Coverage_Type,liability_only,0.55,Liability-only coverage
+Coverage_Type,full_coverage,1.0,Full coverage — collision + comprehensive (base)
