@@ -5,6 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB?style=flat&logo=python&logoColor=white)](https://python.org)
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-FF4B4B?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io)
 [![Plotly](https://img.shields.io/badge/Plotly-5.20+-3F4F75?style=flat&logo=plotly&logoColor=white)](https://plotly.com)
+[![Actuarial Science](https://img.shields.io/badge/Domain-P%26C-0D2340?style=flat)](https://www.casact.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-22C55E?style=flat)](LICENSE)
 
 ---
@@ -23,7 +24,7 @@ The project covers three layers of actuarial practice:
 
 ## Live Demo
 
-> **[→ Launch on Streamlit Community Cloud](https://share.streamlit.io)** *(deploy your own fork — see instructions below)*
+> **[→ Launch on Streamlit Community Cloud](https://flynn-auto-insurance-rating-engine.streamlit.app/)**
 
 ---
 
@@ -106,6 +107,22 @@ The 60/40 split represents a credibility weight — in production this is derive
 
 ---
 
+## Technical Notes
+
+### Why a flat-file rate manual?
+
+In production, personal lines carriers maintain their rate tables in actuarial systems (e.g., Guidewire, Duck Creek, or proprietary platforms) that export to structured formats for state filing. A CSV rate manual mirrors this pattern at small scale and makes the rate logic fully transparent and auditable — a regulator, actuary, or developer can inspect every number without touching the code.
+
+### Why simulate a GLM rather than fit one?
+
+A real GLM requires a credible claims dataset (typically 50,000+ exposures). The synthetic coefficients here are derived from the same manual relativities, intentionally offset slightly to show a non-trivial adjustment. The architecture — coefficient loading, log-link prediction, credibility blending — is identical to how a production GLM artefact would be consumed by a rating engine.
+
+### Validation design
+
+The two-tier validation approach — `OutOfBoundsError` for hard failures vs. warning strings for soft notices — reflects real underwriting workflow. Hard stops prevent the engine from producing a mathematically undefined rate; soft warnings surface underwriting flags (minor drivers, high-value vehicles) without blocking the quote.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
@@ -161,41 +178,12 @@ engine.print_sensitivity_report(
 
 ---
 
-## Deploying to Streamlit Community Cloud
+## Author
 
-1. Fork this repository and make it public.
-2. Go to [share.streamlit.io](https://share.streamlit.io) and sign in with GitHub.
-3. Click **New app**, select your forked repo, set the main file to `app.py`.
-4. Click **Deploy**.
-
-`requirements.txt` is detected automatically — no secrets or environment variables required.
-
----
-
-## Technical Notes
-
-### Why a flat-file rate manual?
-
-In production, personal lines carriers maintain their rate tables in actuarial systems (e.g., Guidewire, Duck Creek, or proprietary platforms) that export to structured formats for state filing. A CSV rate manual mirrors this pattern at small scale and makes the rate logic fully transparent and auditable — a regulator, actuary, or developer can inspect every number without touching the code.
-
-### Why simulate a GLM rather than fit one?
-
-A real GLM requires a credible claims dataset (typically 50,000+ exposures). The synthetic coefficients here are derived from the same manual relativities, intentionally offset slightly to show a non-trivial adjustment. The architecture — coefficient loading, log-link prediction, credibility blending — is identical to how a production GLM artefact would be consumed by a rating engine.
-
-### Validation design
-
-The two-tier validation approach — `OutOfBoundsError` for hard failures vs. warning strings for soft notices — reflects real underwriting workflow. Hard stops prevent the engine from producing a mathematically undefined rate; soft warnings surface underwriting flags (minor drivers, high-value vehicles) without blocking the quote.
-
----
-
-## Roadmap
-
-- [ ] Multi-driver support (household rating)
-- [ ] Prior claims / MVR surcharge factor
-- [ ] Telematics score integration
-- [ ] State-level rate table overrides
-- [ ] PDF quote generation
-- [ ] REST API wrapper (FastAPI)
+**Christopher Flynn**
+- 🌐 [Website](christopherflynn.dev)
+- 💼 [LinkedIn](https://www.linkedin.com/in/christopherflynndev/)
+- 🐙 [GitHub](https://github.com/christopherFlynn)
 
 ---
 
@@ -207,4 +195,4 @@ This project is a portfolio demonstration. It is not a licensed insurance produc
 
 ## License
 
-MIT — see [LICENSE](LICENSE) for details.
+This project is open source and available under the [MIT License](LICENSE).
